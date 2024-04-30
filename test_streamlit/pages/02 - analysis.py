@@ -18,8 +18,9 @@ st.set_page_config(
 
 # menu sidebar
 with st.sidebar:
-    st.write("year")
+    st.write("You can select a years: ")
     start, end = st.slider("year: ", 1971,1983, (1971,1983))
+    st.write("You can select a continents: ")
     with st.popover("Continents: "):
         continents_list = df["continent"].unique()
         continents = st.multiselect("Continents :", continents_list, continents_list)
@@ -35,7 +36,6 @@ with st.popover("Dataframe"):
 st.header("Scatter Miles per Gallon and car weights")
 # Create the scatter plot
 viz_scatterplot = sns.scatterplot(data=df_filtered, x='mpg', y='weightlbs', hue="continent")
-plt.title('Dispersion entre MPG et poids des voitures')
 plt.xlabel('Miles Per Gallon (MPG)')
 plt.ylabel('Weight (WT)')
 st.pyplot(viz_scatterplot.figure)
@@ -43,7 +43,6 @@ st.pyplot(viz_scatterplot.figure)
 st.header("Boxplot Miles per Gallon and cylinders")
 plt.figure(figsize=(8, 6))
 viz_boxplot = sns.boxplot(data=df_filtered, x='cylinders', y='mpg',hue="continent")
-plt.title('Distribution of MPG by cylinders')
 plt.xlabel('Cylinders')
 plt.ylabel('Miles Per Gallon (MPG)')
 st.pyplot(viz_boxplot.figure)
